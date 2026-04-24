@@ -21,14 +21,14 @@ defmodule Hexagen.MixProject do
           "Mix Tasks": [~r/Mix\.Tasks\.Hexagen/]
         ]
       ],
-      source_url: "https://github.com/vortex-solutions/hexagen"
+      source_url: "https://github.com/rbaezc/hexagen"
     ]
   end
 
   defp package do
     [
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/vortex-solutions/hexagen"}
+      links: %{"GitHub" => "https://github.com/rbaezc/hexagen"}
     ]
   end
 
