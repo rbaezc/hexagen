@@ -1,0 +1,22 @@
+defmodule <%= base_module %>.Infrastructure.Persistence.Ecto<%= schema.alias %>RepositoryTest do
+  use <%= base_module %>.DataCase, async: true
+
+  alias <%= base_module %>.Infrastructure.Persistence.Ecto<%= schema.alias %>Repository
+  alias <%= base_module %>.Domain.Entities.<%= schema.alias %>, as: Entity
+
+  describe "<%= schema.alias %> persistence" do
+    test "save_<%= schema.singular %>/1 and get_<%= schema.singular %>/1" do
+      # Note: Adjust attributes to your specific schema
+      attrs = %{} 
+      
+      assert {:ok, %Entity{} = saved} = Ecto<%= schema.alias %>Repository.save_<%= schema.singular %>(attrs)
+      assert {:ok, ^saved} = Ecto<%= schema.alias %>Repository.get_<%= schema.singular %>(saved.id)
+    end
+
+    test "list_<%= schema.plural %>/0 returns all <%= schema.plural %>" do
+      {:ok, unit} = Ecto<%= schema.alias %>Repository.save_<%= schema.singular %>(%{})
+      list = Ecto<%= schema.alias %>Repository.list_<%= schema.plural %>()
+      assert Enum.any?(list, fn e -> e.id == unit.id end)
+    end
+  end
+end

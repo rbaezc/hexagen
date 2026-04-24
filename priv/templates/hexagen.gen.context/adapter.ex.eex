@@ -1,0 +1,53 @@
+defmodule <%= base_module %>.Infrastructure.Persistence.Ecto<%= schema_alias %>Repository do
+  @moduledoc """
+  Adapter implementing <%= schema_alias %>Repository using Ecto.
+  """
+  @behaviour <%= base_module %>.Application.Ports.<%= schema_alias %>Repository
+
+  alias <%= base_module %>.Domain.Entities.<%= schema_alias %>, as: Entity
+  alias <%= schema.module %>, as: Schema
+  alias <%= base_module %>.Repo
+
+  @impl true
+  def get_<%= schema.singular %>(id) do
+    case Repo.get(Schema, id) do
+      nil -> {:error, :not_found}
+      record -> {:ok, to_domain(record)}
+    end
+  end
+
+  @impl true
+  def list_<%= schema.plural %>() do
+    Schema
+    |> Repo.all()
+    |> Enum.map(&to_domain/1)
+  end
+
+  @impl true
+  def save_<%= schema.singular %>(params) do
+    # Note: For production use case, handle updates vs inserts
+    %Schema{}
+    |> Schema.changeset(params)
+    |> Repo.insert()
+    |> case do
+      {:ok, record} -> {:ok, to_domain(record)}
+      {:error, changeset} -> {:error, changeset}
+    end
+  end
+
+  @impl true
+  def delete_<%= schema.singular %>(id) do
+    case Repo.get(Schema, id) do
+      nil -> {:error, :not_found}
+      record -> 
+        case Repo.delete(record) do
+          {:ok, _} -> :ok
+          {:error, reason} -> {:error, reason}
+        end
+    end
+  end
+
+  defp to_domain(record) do
+    struct(Entity, Map.from_struct(record))
+  end
+end

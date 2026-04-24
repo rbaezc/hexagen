@@ -1,0 +1,50 @@
+defmodule <%= base_module %>.Application.UseCases.List<%= schema_alias %>s do
+  @moduledoc """
+  Use case to list <%= schema.plural %>.
+  """
+
+  def execute(repo) do
+    :telemetry.span(
+      [:<%= app_name %>, :use_case, :list_<%= schema.plural %>],
+      %{},
+      fn ->
+        result = repo.list_<%= schema.plural %>()
+        {result, %{}}
+      end
+    )
+  end
+end
+<!-- slide -->
+defmodule <%= base_module %>.Application.UseCases.Get<%= schema_alias %> do
+  @moduledoc """
+  Use case to get a single <%= schema.singular %>.
+  """
+
+  def execute(repo, id) do
+    :telemetry.span(
+      [:<%= app_name %>, :use_case, :get_<%= schema.singular %>],
+      %{id: id},
+      fn ->
+        result = repo.get_<%= schema.singular %>(id)
+        {result, %{}}
+      end
+    )
+  end
+end
+<!-- slide -->
+defmodule <%= base_module %>.Application.UseCases.Create<%= schema_alias %> do
+  @moduledoc """
+  Use case to create a <%= schema.singular %>.
+  """
+
+  def execute(repo, params) do
+    :telemetry.span(
+      [:<%= app_name %>, :use_case, :create_<%= schema.singular %>],
+      %{params: params},
+      fn ->
+        result = repo.save_<%= schema.singular %>(params)
+        {result, %{}}
+      end
+    )
+  end
+end

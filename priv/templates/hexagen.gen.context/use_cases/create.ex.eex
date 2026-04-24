@@ -1,0 +1,16 @@
+defmodule <%= base_module %>.Application.UseCases.Create<%= schema_alias %> do
+  @moduledoc """
+  Use case to create a <%= schema.singular %>.
+  """
+
+  def execute(repo, params) do
+    :telemetry.span(
+      [:<%= app_name %>, :use_case, :create_<%= schema.singular %>],
+      %{params: params},
+      fn ->
+        result = repo.save_<%= schema.singular %>(params)
+        {result, %{}}
+      end
+    )
+  end
+end

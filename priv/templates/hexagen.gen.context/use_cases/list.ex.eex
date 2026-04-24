@@ -1,0 +1,16 @@
+defmodule <%= base_module %>.Application.UseCases.List<%= schema_alias %>s do
+  @moduledoc """
+  Use case to list <%= schema.plural %>.
+  """
+
+  def execute(repo) do
+    :telemetry.span(
+      [:<%= app_name %>, :use_case, :list_<%= schema.plural %>],
+      %{},
+      fn ->
+        result = repo.list_<%= schema.plural %>()
+        {result, %{}}
+      end
+    )
+  end
+end

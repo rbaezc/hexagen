@@ -1,0 +1,31 @@
+defmodule <%= base_module %>.<%= context_name %> do
+  @moduledoc """
+  The <%= context_name %> context facade.
+  Provides an API boundary to the hexagonal core using Dependency Injection.
+  """
+
+  alias <%= base_module %>.Application.UseCases
+  alias <%= base_module %>.Infrastructure.Persistence
+
+  # Injected via configuration with a default fallback to Ecto adapter
+  @repo Application.compile_env(
+    :<%= app_name %>, 
+    [__MODULE__, :repository], 
+    Persistence.Ecto<%= schema_alias %>Repository
+  )
+
+  def list_<%= schema.plural %> do
+    UseCases.List<%= schema_alias %>s.execute(@repo)
+  end
+
+  def get_<%= schema.singular %>!(id) do
+    case UseCases.Get<%= schema_alias %>.execute(@repo, id) do
+      {:ok, record} -> record
+      {:error, :not_found} -> raise "not found"
+    end
+  end
+
+  def create_<%= schema.singular %>(attrs \\ %{}) do
+    UseCases.Create<%= schema_alias %>.execute(@repo, attrs)
+  end
+end

@@ -1,0 +1,23 @@
+defmodule <%= base_module %>.Application.UseCases.Create<%= schema.alias %>Test do
+  use ExUnit.Case, async: true
+  import Mox
+
+  alias <%= base_module %>.Application.UseCases.Create<%= schema.alias %>
+  alias <%= base_module %>.Domain.Entities.<%= schema.alias %>
+
+  # Assumes a mock is defined for the port
+  @repo_mock <%= base_module %>.Application.Ports.<%= schema.alias %>RepositoryMock
+
+  setup :verify_on_exit!
+
+  test "execute/2 calls the repository to save a <%= schema.singular %>" do
+    params = %{field: "value"}
+    expected_entity = %<%= schema.alias %>{id: "123"}
+    
+    expect(@repo_mock, :save_<%= schema.singular %>, fn ^params -> 
+      {:ok, expected_entity}
+    end)
+
+    assert {:ok, ^expected_entity} = Create<%= schema.alias %>.execute(@repo_mock, params)
+  end
+end

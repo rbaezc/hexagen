@@ -1,0 +1,16 @@
+defmodule <%= base_module %>.Application.UseCases.Get<%= schema_alias %> do
+  @moduledoc """
+  Use case to get a single <%= schema.singular %>.
+  """
+
+  def execute(repo, id) do
+    :telemetry.span(
+      [:<%= app_name %>, :use_case, :get_<%= schema.singular %>],
+      %{id: id},
+      fn ->
+        result = repo.get_<%= schema.singular %>(id)
+        {result, %{}}
+      end
+    )
+  end
+end
