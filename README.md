@@ -29,6 +29,9 @@ graph TD
 - Dependency Injection: Dynamic adapter injection using Elixir configuration.
 - Built-in Mocking: Pre-configured setup for Mox for fast unit tests.
 - High Code Coverage: Extensively tested for reliability.
+- One Core, Multiple Skins: Write your business logic once and seamlessly generate API (JSON), traditional Web (HTML), or real-time (LiveView) interfaces on top of it without rewriting a single domain rule.
+- Centralized Error Handler: Forget about mapping {:error, reason} in every controller. HexaGen includes an intelligent error handler that automatically translates domain errors into the correct HTTP status codes.
+- Max-Zero-Config TDD: Out-of-the-box native Dependency Injection. HexaGen automatically injects Mox definitions into your test_helper.exs, removing the friction of configuring mocks so you can test at high speed.
 
 ## Getting Started
 
