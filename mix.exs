@@ -4,9 +4,10 @@ defmodule Hexagen.MixProject do
   def project do
     [
       app: :hexagen,
-      version: "0.1.0",
-      elixir: "~> 1.19",
-      description: "Standardized Hexagonal Architecture Scaffolding for Phoenix Applications",
+      version: "0.1.1",
+      elixir: "~> 1.15",
+      description:
+        "The Architecture Guardian for Phoenix. A strict Hexagonal Architecture scaffolding tool.",
       start_permanent: Mix.env() == :prod,
       test_coverage: [tool: ExCoveralls],
       package: package(),
@@ -27,6 +28,8 @@ defmodule Hexagen.MixProject do
 
   defp package do
     [
+      maintainers: ["Raul Baez Camarillo"],
+      files: ["lib", "priv", "mix.exs", "README.md", "CHANGELOG.md", "LICENSE"],
       licenses: ["MIT"],
       links: %{"GitHub" => "https://github.com/rbaezc/hexagen"}
     ]
@@ -57,7 +60,8 @@ defmodule Hexagen.MixProject do
       {:phoenix, "~> 1.7"},
       {:phoenix_ecto, "~> 4.4"},
       {:jason, "~> 1.2"},
-      {:excoveralls, "~> 0.18", only: :test}
+      {:excoveralls, "~> 0.18", only: :test},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
   end
 end
