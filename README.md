@@ -12,7 +12,14 @@ More than just a generator, HexaGen is a strict architectural guardian. By autom
 
 ### The Architecture
 
-![Hexagonal Architecture Diagram](https://mermaid.ink/img/pako:eNptkEELwjAMhf_KkrM79S8IexmCDstO6mEupWvXonOn0_F_N9vBoXfJyXv5khdUay0YmE-47YAr-mAVAs-68vTIs_l6-7_Z_H_Z0m82v2z_K5uD_mUr_GZfX-W28vPAtA-7O7W-oF-m7fUu_W7-u5_6W_q797O2P-C379v-0m6q_9vP7h_2e9p_6rfP_029n_qbc_8F3vEBBZ97xw)
+```mermaid
+graph TD
+    Web[Phoenix Web/Controllers] --> Facade[Context Facade]
+    Facade --> UseCases[Application Use Cases]
+    UseCases -- Calls --> Ports[Ports / Behaviours]
+    Ports -- Implemented by --> Adapters[Infrastructure / Ecto Adapters]
+    UseCases -- Operates on --> Entities[Domain Entities]
+```
 
 ## Features
 
@@ -35,7 +42,7 @@ Add hexagen to your mix.exs:
 ```elixir
 def deps do
   [
-    {:hexagen, "~> 0.1.1", only: :dev}
+    {:hexagen, "~> 0.1.4", only: :dev}
   ]
 end
 ```

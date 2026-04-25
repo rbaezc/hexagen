@@ -4,7 +4,7 @@ defmodule Hexagen.MixProject do
   def project do
     [
       app: :hexagen,
-      version: "0.1.1",
+      version: "0.1.4",
       elixir: "~> 1.15",
       description:
         "The Architecture Guardian for Phoenix. A strict Hexagonal Architecture scaffolding tool.",
