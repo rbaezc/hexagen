@@ -35,7 +35,7 @@ Add hexagen to your mix.exs:
 ```elixir
 def deps do
   [
-    {:hexagen, "~> 0.1.0", only: :dev}
+    {:hexagen, "~> 0.1.1", only: :dev}
   ]
 end
 ```
