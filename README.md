@@ -1,14 +1,14 @@
 # HexaGen
 
-Standardized Hexagonal Architecture Scaffolding for Phoenix Applications. The Architecture Guardian for Phoenix, build clean ecosystems, not spaghetti code.
+**The Architecture Guardian for Phoenix: Build clean ecosystems, not spaghetti code.**
 
-HexaGen extends the default Phoenix generators to enforce a clean separation of concerns using the Ports and Adapters pattern. It helps keep business logic pure and decoupled from technical details like databases or external APIs.
+HexaGen is a standardized Hexagonal Architecture scaffolding tool that extends the default Phoenix generators. It enforces a strict separation of concerns using the Ports and Adapters pattern, ensuring your business logic remains pure and entirely decoupled from technical details like databases or external APIs.
 
 ## Why HexaGen?
 
-Standard Phoenix contexts often become large and mix Ecto logic with business rules. HexaGen solves this by enforcing a directory structure that follows SOLID principles out of the box.
+Standard Phoenix contexts often grow organically, inevitably mixing Ecto logic, web presentation, and business rules into tightly coupled monoliths. HexaGen prevents this by enforcing a directory structure that follows SOLID principles out of the box.
 
-HexaGen is not just a generator; it's a strict architectural guardian. It extends Phoenix to enforce a pure Ports and Adapters (Hexagonal) pattern, automating infrastructure, tests, and monitoring. By strictly decoupling business logic from the web layer, HexaGen allows development teams to save up to 40% of setup time, letting developers focus entirely on what matters: the core business rules.
+More than just a generator, HexaGen is a strict architectural guardian. By automating infrastructure, tests, and monitoring—and strictly decoupling the domain from the web layer—HexaGen allows development teams to **save up to 40% of setup and refactoring time**, letting developers focus exclusively on what matters: the core business rules.
 
 ### The Architecture
 
