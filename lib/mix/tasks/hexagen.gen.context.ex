@@ -133,7 +133,9 @@ defmodule Mix.Tasks.Hexagen.Gen.Context do
   end
 
   defp copy_template(source, target, assigns) do
-    content = EEx.eval_file(source, assigns)
+    # Ensure we look for templates inside the hexagen library's priv directory
+    full_source = Path.join(:code.priv_dir(:hexagen), String.replace(source, "priv/", ""))
+    content = EEx.eval_file(full_source, assigns)
     File.mkdir_p!(Path.dirname(target))
     File.write!(target, content)
     Mix.shell().info([:green, "  creating ", :reset, target])
