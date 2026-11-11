@@ -4,7 +4,7 @@ defmodule Hexagen.MixProject do
   def project do
     [
       app: :hexagen,
-      version: "0.1.5",
+      version: "0.1.6",
       elixir: "~> 1.15",
       description:
         "The Architecture Guardian for Phoenix. A strict Hexagonal Architecture scaffolding tool.",
@@ -59,7 +59,9 @@ defmodule Hexagen.MixProject do
     [
       {:phoenix, "~> 1.7"},
       {:phoenix_ecto, "~> 4.4"},
+      {:ecto_sqlite3, "~> 0.15"},
       {:jason, "~> 1.2"},
+      {:mox, "~> 1.0", only: :test},
       {:excoveralls, "~> 0.18", only: :test},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false}
     ]
